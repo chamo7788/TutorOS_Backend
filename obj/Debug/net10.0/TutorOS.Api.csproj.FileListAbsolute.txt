@@ -123,3 +123,4 @@
 /Users/chamodyanayanaminaganegamage/Downloads/Nexora Labs/My Project/tutorOS-backend/TutorOS.Api/bin/Debug/net10.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/chamodyanayanaminaganegamage/Downloads/Nexora Labs/My Project/tutorOS-backend/TutorOS.Api/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/chamodyanayanaminaganegamage/Downloads/Nexora Labs/My Project/tutorOS-backend/TutorOS.Api/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/chamodyanayanaminaganegamage/Downloads/Nexora Labs/My Project/tutorOS-backend/TutorOS.Api/obj/Debug/net10.0/TutorOS.Api.sourcelink.json

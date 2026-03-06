@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TutorOS.Api;
@@ -11,9 +12,11 @@ using TutorOS.Api;
 namespace TutorOS.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260306183915_AddStudentFeeStatusTable")]
+    partial class AddStudentFeeStatusTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,11 +85,7 @@ namespace TutorOS.Api.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.HasIndex("ScanDate")
-                        .HasDatabaseName("idx_attendance_date");
-
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_attendance_student");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("attendance", "public");
                 });
@@ -174,72 +173,6 @@ namespace TutorOS.Api.Migrations
                     b.ToTable("classes", "public");
                 });
 
-            modelBuilder.Entity("TutorOS.Api.Models.DailyReport", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasDefaultValueSql("gen_random_uuid()");
-
-                    b.Property<DateTimeOffset>("GeneratedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamptz")
-                        .HasColumnName("generated_at")
-                        .HasDefaultValueSql("NOW()");
-
-                    b.Property<int?>("LateStudentsCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("late_students_count");
-
-                    b.Property<int?>("MaterialsIssuedCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("materials_issued_count");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("text")
-                        .HasColumnName("notes");
-
-                    b.Property<DateOnly>("ReportDate")
-                        .HasColumnType("date")
-                        .HasColumnName("report_date");
-
-                    b.Property<decimal?>("TotalCash")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(10,2)")
-                        .HasDefaultValue(0m)
-                        .HasColumnName("total_cash");
-
-                    b.Property<decimal?>("TotalOnline")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(10,2)")
-                        .HasDefaultValue(0m)
-                        .HasColumnName("total_online");
-
-                    b.Property<int?>("TotalStudentsAttended")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("total_students_attended");
-
-                    b.Property<int?>("UnpaidStudentsCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("unpaid_students_count");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReportDate")
-                        .IsUnique();
-
-                    b.ToTable("daily_reports", "public");
-                });
-
             modelBuilder.Entity("TutorOS.Api.Models.Enrollment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -284,156 +217,6 @@ namespace TutorOS.Api.Migrations
                         .IsUnique();
 
                     b.ToTable("enrollments", "public");
-                });
-
-            modelBuilder.Entity("TutorOS.Api.Models.Exam", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasDefaultValueSql("gen_random_uuid()");
-
-                    b.Property<string>("AnswerKey")
-                        .HasColumnType("jsonb")
-                        .HasColumnName("answer_key");
-
-                    b.Property<Guid>("ClassId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("class_id");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamptz")
-                        .HasColumnName("created_at")
-                        .HasDefaultValueSql("NOW()");
-
-                    b.Property<int?>("DurationMinutes")
-                        .HasColumnType("integer")
-                        .HasColumnName("duration_minutes");
-
-                    b.Property<DateOnly?>("ExamDate")
-                        .HasColumnType("date")
-                        .HasColumnName("exam_date");
-
-                    b.Property<string>("ExamType")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("exam_type");
-
-                    b.Property<int?>("McqCount")
-                        .HasColumnType("integer")
-                        .HasColumnName("mcq_count");
-
-                    b.Property<int?>("PassMarks")
-                        .HasColumnType("integer")
-                        .HasColumnName("pass_marks");
-
-                    b.Property<int?>("TheoryCount")
-                        .HasColumnType("integer")
-                        .HasColumnName("theory_count");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)")
-                        .HasColumnName("title");
-
-                    b.Property<string>("TopicMapping")
-                        .HasColumnType("jsonb")
-                        .HasColumnName("topic_mapping");
-
-                    b.Property<int>("TotalMarks")
-                        .HasColumnType("integer")
-                        .HasColumnName("total_marks");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassId");
-
-                    b.ToTable("exams", "public");
-                });
-
-            modelBuilder.Entity("TutorOS.Api.Models.ExamResult", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasDefaultValueSql("gen_random_uuid()");
-
-                    b.Property<int?>("ClassRank")
-                        .HasColumnType("integer")
-                        .HasColumnName("class_rank");
-
-                    b.Property<Guid>("ExamId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("exam_id");
-
-                    b.Property<DateTimeOffset?>("GradedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamptz")
-                        .HasColumnName("graded_at")
-                        .HasDefaultValueSql("NOW()");
-
-                    b.Property<string>("GradedBy")
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)")
-                        .HasColumnName("graded_by");
-
-                    b.Property<int?>("IslandRank")
-                        .HasColumnType("integer")
-                        .HasColumnName("island_rank");
-
-                    b.Property<string>("McqAnswers")
-                        .HasColumnType("jsonb")
-                        .HasColumnName("mcq_answers");
-
-                    b.Property<int?>("McqScore")
-                        .HasColumnType("integer")
-                        .HasColumnName("mcq_score");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("text")
-                        .HasColumnName("notes");
-
-                    b.Property<decimal?>("Percentage")
-                        .HasColumnType("decimal(5,2)")
-                        .HasColumnName("percentage");
-
-                    b.Property<string>("StrongAreas")
-                        .HasColumnType("jsonb")
-                        .HasColumnName("strong_areas");
-
-                    b.Property<Guid>("StudentId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("student_id");
-
-                    b.Property<int?>("TheoryScore")
-                        .HasColumnType("integer")
-                        .HasColumnName("theory_score");
-
-                    b.Property<int?>("TotalScore")
-                        .HasColumnType("integer")
-                        .HasColumnName("total_score");
-
-                    b.Property<string>("WeakAreas")
-                        .HasColumnType("jsonb")
-                        .HasColumnName("weak_areas");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExamId")
-                        .HasDatabaseName("idx_exam_results_exam");
-
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_exam_results_student");
-
-                    b.HasIndex("StudentId", "ExamId")
-                        .IsUnique();
-
-                    b.ToTable("exam_results", "public");
                 });
 
             modelBuilder.Entity("TutorOS.Api.Models.FeePeriod", b =>
@@ -635,64 +418,11 @@ namespace TutorOS.Api.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.HasIndex("FeePeriodId")
-                        .HasDatabaseName("idx_payments_period");
+                    b.HasIndex("FeePeriodId");
 
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_payments_student");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("payments", "public");
-                });
-
-            modelBuilder.Entity("TutorOS.Api.Models.Staff", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid")
-                        .HasColumnName("id");
-
-                    b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamptz")
-                        .HasColumnName("created_at")
-                        .HasDefaultValueSql("NOW()");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("email");
-
-                    b.Property<string>("FullName")
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)")
-                        .HasColumnName("full_name");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(true)
-                        .HasColumnName("is_active");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)")
-                        .HasColumnName("phone");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("role");
-
-                    b.Property<DateTimeOffset>("UpdatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamptz")
-                        .HasColumnName("updated_at")
-                        .HasDefaultValueSql("NOW()");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("staff", "public");
                 });
 
             modelBuilder.Entity("TutorOS.Api.Models.Student", b =>
@@ -801,12 +531,10 @@ namespace TutorOS.Api.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("QrCodeData")
-                        .IsUnique()
-                        .HasDatabaseName("idx_students_qr_code");
+                        .IsUnique();
 
                     b.HasIndex("StudentCode")
-                        .IsUnique()
-                        .HasDatabaseName("idx_students_student_code");
+                        .IsUnique();
 
                     b.ToTable("students", "public");
                 });
@@ -863,9 +591,6 @@ namespace TutorOS.Api.Migrations
 
                     b.HasIndex("FeePeriodId");
 
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_fee_status_student");
-
                     b.HasIndex("StudentId", "ClassId", "FeePeriodId")
                         .IsUnique();
 
@@ -906,36 +631,6 @@ namespace TutorOS.Api.Migrations
                         .IsRequired();
 
                     b.Navigation("Class");
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("TutorOS.Api.Models.Exam", b =>
-                {
-                    b.HasOne("TutorOS.Api.Models.Class", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Class");
-                });
-
-            modelBuilder.Entity("TutorOS.Api.Models.ExamResult", b =>
-                {
-                    b.HasOne("TutorOS.Api.Models.Exam", "Exam")
-                        .WithMany()
-                        .HasForeignKey("ExamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TutorOS.Api.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Exam");
 
                     b.Navigation("Student");
                 });

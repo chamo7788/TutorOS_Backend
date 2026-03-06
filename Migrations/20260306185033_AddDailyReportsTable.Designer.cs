@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TutorOS.Api;
@@ -11,9 +12,11 @@ using TutorOS.Api;
 namespace TutorOS.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260306185033_AddDailyReportsTable")]
+    partial class AddDailyReportsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,11 +85,7 @@ namespace TutorOS.Api.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.HasIndex("ScanDate")
-                        .HasDatabaseName("idx_attendance_date");
-
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_attendance_student");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("attendance", "public");
                 });
@@ -424,11 +423,7 @@ namespace TutorOS.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExamId")
-                        .HasDatabaseName("idx_exam_results_exam");
-
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_exam_results_student");
+                    b.HasIndex("ExamId");
 
                     b.HasIndex("StudentId", "ExamId")
                         .IsUnique();
@@ -635,11 +630,9 @@ namespace TutorOS.Api.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.HasIndex("FeePeriodId")
-                        .HasDatabaseName("idx_payments_period");
+                    b.HasIndex("FeePeriodId");
 
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_payments_student");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("payments", "public");
                 });
@@ -801,12 +794,10 @@ namespace TutorOS.Api.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("QrCodeData")
-                        .IsUnique()
-                        .HasDatabaseName("idx_students_qr_code");
+                        .IsUnique();
 
                     b.HasIndex("StudentCode")
-                        .IsUnique()
-                        .HasDatabaseName("idx_students_student_code");
+                        .IsUnique();
 
                     b.ToTable("students", "public");
                 });
@@ -862,9 +853,6 @@ namespace TutorOS.Api.Migrations
                     b.HasIndex("ClassId");
 
                     b.HasIndex("FeePeriodId");
-
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_fee_status_student");
 
                     b.HasIndex("StudentId", "ClassId", "FeePeriodId")
                         .IsUnique();

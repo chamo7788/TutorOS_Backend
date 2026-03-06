@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TutorOS.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63c8c13ac2d7b73cfb9038c496665eb7870045af")]
 [assembly: System.Reflection.AssemblyProductAttribute("TutorOS.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TutorOS.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

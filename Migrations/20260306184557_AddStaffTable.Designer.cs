@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TutorOS.Api;
@@ -11,9 +12,11 @@ using TutorOS.Api;
 namespace TutorOS.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260306184557_AddStaffTable")]
+    partial class AddStaffTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,11 +85,7 @@ namespace TutorOS.Api.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.HasIndex("ScanDate")
-                        .HasDatabaseName("idx_attendance_date");
-
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_attendance_student");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("attendance", "public");
                 });
@@ -172,72 +171,6 @@ namespace TutorOS.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("classes", "public");
-                });
-
-            modelBuilder.Entity("TutorOS.Api.Models.DailyReport", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasDefaultValueSql("gen_random_uuid()");
-
-                    b.Property<DateTimeOffset>("GeneratedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamptz")
-                        .HasColumnName("generated_at")
-                        .HasDefaultValueSql("NOW()");
-
-                    b.Property<int?>("LateStudentsCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("late_students_count");
-
-                    b.Property<int?>("MaterialsIssuedCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("materials_issued_count");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("text")
-                        .HasColumnName("notes");
-
-                    b.Property<DateOnly>("ReportDate")
-                        .HasColumnType("date")
-                        .HasColumnName("report_date");
-
-                    b.Property<decimal?>("TotalCash")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(10,2)")
-                        .HasDefaultValue(0m)
-                        .HasColumnName("total_cash");
-
-                    b.Property<decimal?>("TotalOnline")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(10,2)")
-                        .HasDefaultValue(0m)
-                        .HasColumnName("total_online");
-
-                    b.Property<int?>("TotalStudentsAttended")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("total_students_attended");
-
-                    b.Property<int?>("UnpaidStudentsCount")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(0)
-                        .HasColumnName("unpaid_students_count");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ReportDate")
-                        .IsUnique();
-
-                    b.ToTable("daily_reports", "public");
                 });
 
             modelBuilder.Entity("TutorOS.Api.Models.Enrollment", b =>
@@ -424,11 +357,7 @@ namespace TutorOS.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExamId")
-                        .HasDatabaseName("idx_exam_results_exam");
-
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_exam_results_student");
+                    b.HasIndex("ExamId");
 
                     b.HasIndex("StudentId", "ExamId")
                         .IsUnique();
@@ -635,11 +564,9 @@ namespace TutorOS.Api.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.HasIndex("FeePeriodId")
-                        .HasDatabaseName("idx_payments_period");
+                    b.HasIndex("FeePeriodId");
 
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_payments_student");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("payments", "public");
                 });
@@ -801,12 +728,10 @@ namespace TutorOS.Api.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("QrCodeData")
-                        .IsUnique()
-                        .HasDatabaseName("idx_students_qr_code");
+                        .IsUnique();
 
                     b.HasIndex("StudentCode")
-                        .IsUnique()
-                        .HasDatabaseName("idx_students_student_code");
+                        .IsUnique();
 
                     b.ToTable("students", "public");
                 });
@@ -862,9 +787,6 @@ namespace TutorOS.Api.Migrations
                     b.HasIndex("ClassId");
 
                     b.HasIndex("FeePeriodId");
-
-                    b.HasIndex("StudentId")
-                        .HasDatabaseName("idx_fee_status_student");
 
                     b.HasIndex("StudentId", "ClassId", "FeePeriodId")
                         .IsUnique();

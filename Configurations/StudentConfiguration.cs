@@ -11,9 +11,11 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
         builder.ToTable("students", "public");
 
         builder.HasIndex(s => s.StudentCode)
+            .HasDatabaseName("idx_students_student_code")
             .IsUnique();
 
         builder.HasIndex(s => s.QrCodeData)
+            .HasDatabaseName("idx_students_qr_code")
             .IsUnique();
 
         builder.Property(s => s.Id)
