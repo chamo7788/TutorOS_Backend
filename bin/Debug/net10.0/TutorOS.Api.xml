@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TutorOS.Api</name>
+    </assembly>
+    <members>
+        <member name="T:TutorOS.Api.Controllers.AccountController">
+            <summary>
+            Handles user account operations such as registration and login.
+            </summary>
+        </member>
+        <member name="M:TutorOS.Api.Controllers.AccountController.Register(TutorOS.Api.DTOs.RegisterDto)">
+            <summary>
+            Registers a new user and their institute.
+            </summary>
+            <param name="registerDto">The registration details.</param>
+            <returns>A successful response if registration is complete.</returns>
+            <response code="200">User registered successfully.</response>
+            <response code="400">Invalid registration details or user already exists.</response>
+        </member>
+        <member name="M:TutorOS.Api.Controllers.AccountController.Login(TutorOS.Api.DTOs.LoginDto)">
+            <summary>
+            Authenticates a user and returns a JWT token.
+            </summary>
+            <param name="loginDto">The login credentials.</param>
+            <returns>An authentication response containing a JWT token.</returns>
+            <response code="200">Login successful.</response>
+            <response code="401">Invalid email or password.</response>
+        </member>
+        <member name="T:TutorOS.Api.DTOs.RegisterDto">
+            <summary>
+            Data transfer object for user registration.
+            </summary>
+        </member>
+        <member name="P:TutorOS.Api.DTOs.RegisterDto.FullName">
+            <summary>
+            The user's full name.
+            </summary>
+            <example>John Doe</example>
+        </member>
+        <member name="P:TutorOS.Api.DTOs.RegisterDto.Email">
+            <summary>
+            The user's email address.
+            </summary>
+            <example>john.doe@example.com</example>
+        </member>
+        <member name="P:TutorOS.Api.DTOs.RegisterDto.Password">
+            <summary>
+            The user's password.
+            </summary>
+            <example>StrongPassword123!</example>
+        </member>
+        <member name="P:TutorOS.Api.DTOs.RegisterDto.InstituteName">
+            <summary>
+            The name of the institute the user belongs to.
+            </summary>
+            <example>Alpha Academy</example>
+        </member>
+        <member name="T:TutorOS.Api.DTOs.LoginDto">
+            <summary>
+            Data transfer object for user login.
+            </summary>
+        </member>
+        <member name="P:TutorOS.Api.DTOs.LoginDto.Email">
+            <summary>
+            The user's email address.
+            </summary>
+            <example>john.doe@example.com</example>
+        </member>
+        <member name="P:TutorOS.Api.DTOs.LoginDto.Password">
+            <summary>
+            The user's password.
+            </summary>
+            <example>StrongPassword123!</example>
+        </member>
+        <member name="T:TutorOS.Api.DTOs.AuthResponseDto">
+            <summary>
+            Data transfer object for the authentication response.
+            </summary>
+        </member>
+        <member name="P:TutorOS.Api.DTOs.AuthResponseDto.Token">
+            <summary>
+            The JWT access token.
+            </summary>
+        </member>
+        <member name="P:TutorOS.Api.DTOs.AuthResponseDto.ExpiresAt">
+            <summary>
+            The expiration time of the token.
+            </summary>
+        </member>
+        <member name="P:TutorOS.Api.DTOs.AuthResponseDto.Email">
+            <summary>
+            The authenticated user's email.
+            </summary>
+        </member>
+        <member name="T:TutorOS.Api.Migrations.CreateStudentsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.CreateStudentsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.CreateStudentsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.CreateStudentsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddClassTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddClassTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddClassTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddClassTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddEnrollmentsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddEnrollmentsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddEnrollmentsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddEnrollmentsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddAttendanceTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddAttendanceTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddAttendanceTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddAttendanceTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddMaterialsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddMaterialsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddMaterialsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddMaterialsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddMaterialIssuesTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddMaterialIssuesTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddMaterialIssuesTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddMaterialIssuesTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddFeePeriodsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddFeePeriodsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddFeePeriodsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddFeePeriodsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddPaymentsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddPaymentsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddPaymentsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddPaymentsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddStudentFeeStatusTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddStudentFeeStatusTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddStudentFeeStatusTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddStudentFeeStatusTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddExamsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddExamsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddExamsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddExamsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddExamResultsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddExamResultsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddExamResultsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddExamResultsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddStaffTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddStaffTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddStaffTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddStaffTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddDailyReportsTable">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddDailyReportsTable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddDailyReportsTable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddDailyReportsTable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.AddExplicitIndexes">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddExplicitIndexes.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddExplicitIndexes.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.AddExplicitIndexes.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TutorOS.Api.Migrations.ApplyRLSAndPolicies">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.ApplyRLSAndPolicies.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.ApplyRLSAndPolicies.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TutorOS.Api.Migrations.ApplyRLSAndPolicies.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type)">
+            <summary>
+            Generates a documentation comment ID for a type.
+            Example: T:Namespace.Outer+Inner`1 becomes T:Namespace.Outer.Inner`1
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.PropertyInfo)">
+            <summary>
+            Generates a documentation comment ID for a property.
+            Example: P:Namespace.ContainingType.PropertyName or for an indexer P:Namespace.ContainingType.Item(System.Int32)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type,System.String)">
+            <summary>
+            Generates a documentation comment ID for a property given its container type and property name.
+            Example: P:Namespace.ContainingType.PropertyName
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.MethodInfo)">
+            <summary>
+            Generates a documentation comment ID for a method (or constructor).
+            For example:
+              M:Namespace.ContainingType.MethodName(ParamType1,ParamType2)~ReturnType
+              M:Namespace.ContainingType.#ctor(ParamType)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.GetTypeDocId(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a documentation ID string for a type.
+            This method handles nested types (replacing '+' with '.'),
+            generic types, arrays, pointers, by-ref types, and generic parameters.
+            The <paramref name="includeGenericArguments"/> flag controls whether
+            constructed generic type arguments are emitted, while <paramref name="omitGenericArity"/>
+            controls whether the generic arity marker (e.g. "`1") is appended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.NormalizeDocId(System.String)">
+            <summary>
+            Normalizes a documentation comment ID to match the compiler-style format.
+            Strips the return type suffix for ordinary methods but retains it for conversion operators.
+            </summary>
+            <param name="docId">The documentation comment ID to normalize.</param>
+            <returns>The normalized documentation comment ID.</returns>
+        </member>
+    </members>
+</doc>
